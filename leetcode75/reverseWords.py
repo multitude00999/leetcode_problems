@@ -17,6 +17,7 @@ class Solution:
             i+=1
         
         # split by space and return reversed string
+        
         arr = res.strip().split(' ')
         return " ".join(arr[::-1])
             
