@@ -15,7 +15,7 @@ class Solution:
             if nums[right_ptr] == 0:
                 num_zeroes += 1
             
-            # move left pointer until there is only one zero in the subarray
+            # move left pointer until there are only k zeroes in the subarray
             while left_ptr < n and num_zeroes > k:
                 if nums[left_ptr] == 0:
                     num_zeroes -= 1
