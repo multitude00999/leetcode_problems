@@ -24,7 +24,7 @@ class Solution:
                     foundQ = True
                 
                 # break if both p and q are found
-                if foundP > -1 and foundQ > -1:
+                if foundP and foundQ :
                     break
                 
 
@@ -39,25 +39,25 @@ class Solution:
                     par_dict[curr.right.val] = curr.val
 
         # make a list of parents of p
-        par_p = [p.val, par_queue[p.val]]
+        par_p = [p.val, par_dict[p.val]]
         curr = par_p[-1]
         while curr != root.val:
-            curr = par_queue[curr]
+            curr = par_dict[curr]
             par_p.append(curr)
 
         # make a list of parents of q
-        par_q = [q.val, par_queue[q.val]]
+        par_q = [q.val, par_dict[q.val]]
         curr = par_q[-1]
 
         # check if parent of q already in par_p
         if q.val in par_p:
             return q
-            
+
         # keep checking if parent of q in p until root node
         while curr != root.val:
             if curr in par_p:
-                return val_dict[curr]
-            curr = par_queue[curr]
+                return val_parent[curr]
+            curr = par_dict[curr]
             par_q.append(curr)
 
         return root
