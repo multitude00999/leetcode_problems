@@ -1,4 +1,39 @@
-class Solution:
+class Solution1:
+    def findParent(self, root: 'TreeNode', p: 'TreeNode', currpath: List[int], pathNum: int):
+        if root == None:
+            return
+        
+        if root.val == p.val:
+            if pathNum == 1:
+                self.path1 = currpath + [root]
+            else:
+                self.path2 = currpath + [root]
+            return
+        self.findParent(root.left, p, currpath + [root], pathNum)
+        self.findParent(root.right, p, currpath + [root], pathNum)
+
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # base case
+        if root.val == p.val or root.val == q.val:
+            return root
+
+        # find path to p
+        self.path1 = []
+        self.findParent(root, p, [], 1)
+        
+        # find path to q
+        self.path2 = []
+        self.findParent(root, q, [], 2)
+
+        # find the lowest common ancestor
+        min_len = min(len(self.path1), len(self.path2))
+        i = 0
+        while i < min_len and self.path1[i].val == self.path2[i].val:
+            i += 1
+
+        return self.path1[i-1]
+
+class Solution2:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if root.val == p.val or root.val == q.val:
             return root
