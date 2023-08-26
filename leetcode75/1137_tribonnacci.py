@@ -4,6 +4,8 @@ class Solution:
             return n
         elif n == 2:
             return 1
+
+        # add swapping variables
         prev3, prev2, prev = 0, 1, 1
         for i in range(3, n+1):
             curr = prev + prev2 + prev3
